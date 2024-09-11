@@ -1,0 +1,50 @@
+# Ignore directories
+.vscode/
+build/
+
+# Ignore compiled object files
+*.o
+*.obj
+
+# Ignore compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Ignore compiled static libraries
+*.lib
+*.a
+
+# Ignore executable files
+*.exe
+*.out
+*.app
+
+# Ignore dependency directories
+deps/
+vendor/
+
+# Ignore generated files
+*.log
+*.tmp
+*.cache
+
+# Ignore IDE and editor specific files
+*.idea/
+*.vscode/
+*.DS_Store  # macOS
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore testing-related files
+test/*.o
+test/*.out
+
+# Ignore coverage reports
+*.gcno
+*.gcda
+*.gcov

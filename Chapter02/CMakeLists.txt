@@ -9,9 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add extra warning flags
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    add_compile_options(
-        -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wnon-virtual-dtor -Wold-style-cast
-    )
+    # add_compile_options(
+        # -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wnon-virtual-dtor -Wold-style-cast
+    # )
 endif()
 
 # Define sources
@@ -29,6 +29,9 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/google/benchmark.git
     GIT_TAG v1.7.1  # Or the version you want
 )
+
+# Enable downloading of dependencies (including Google Test)
+set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON CACHE BOOL "Download benchmark dependencies including Google Test")
 
 FetchContent_MakeAvailable(benchmark)
 
