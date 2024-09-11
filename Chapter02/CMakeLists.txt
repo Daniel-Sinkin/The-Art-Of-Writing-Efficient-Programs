@@ -15,6 +15,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
     # )
 endif()
 
+# Set default build type to Release if not specified
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
+endif()
+
 # Google Benchmark
 # Download and build Google Benchmark if not available
 include(FetchContent)
@@ -39,14 +44,17 @@ set(SOURCES
 # Link benchmark and pthread, atomic, rt, m libraries
 find_package(Threads REQUIRED)
 
+# Find gperftools profiler (if installed)
+find_library(PROFILER_LIB profiler)
+
 # Add the executable
 add_executable(01_substring_sort ${SOURCES})
 
 # Link the libraries
 if(APPLE)
-    target_link_libraries(01_substring_sort benchmark::benchmark Threads::Threads)
+    target_link_libraries(01_substring_sort benchmark::benchmark Threads::Threads ${PROFILER_LIB})
 else()
-    target_link_libraries(01_substring_sort benchmark::benchmark Threads::Threads pthread atomic rt m)
+    target_link_libraries(01_substring_sort benchmark::benchmark Threads::Threads pthread atomic rt m ${PROFILER_LIB})
 endif()
 
 # Optionally enable testing (if you have tests later on)
